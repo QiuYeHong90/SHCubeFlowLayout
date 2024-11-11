@@ -1,0 +1,16 @@
+PODS:
+  - SHCubeFlowLayout (0.1.0)
+
+DEPENDENCIES:
+  - SHCubeFlowLayout (from `../`)
+
+EXTERNAL SOURCES:
+  SHCubeFlowLayout:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SHCubeFlowLayout: b3948306d4c5c0d817784358855537cecdac5d31
+
+PODFILE CHECKSUM: 7de5f18ca1298a6cd4c08f1acc5d9ea4de4aa2ed
+
+COCOAPODS: 1.13.0

@@ -1,0 +1,6 @@
+framework module SHCubeFlowLayout {
+  umbrella header "SHCubeFlowLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}
