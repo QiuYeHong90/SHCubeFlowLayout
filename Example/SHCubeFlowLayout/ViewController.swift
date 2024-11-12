@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 2000
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -19,14 +19,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.red : UIColor.yellow
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        cell.isHidden = true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.isHidden = false
-    }
+  
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -40,6 +33,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.clipsToBounds = false
         collectionView.isPagingEnabled = true
         collectionView.backgroundColor = .green
+        collectionView.dataSource = self
         collectionView.delegate = self
     }
 
