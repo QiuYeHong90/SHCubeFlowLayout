@@ -31,7 +31,8 @@ open class SHCubleFlowLayout: UICollectionViewLayout {
         let rowCount = 4
         let allCount = self.collectionView?.numberOfItems(inSection: 0) ?? 0
         attributtes.center = .init(x: x + containerW * 0.5, y: containerH * 0.5)
-        attributtes.size = .init(width: self.itemSize.width, height: self.itemSize.height - 213)
+//        attributtes.size = .init(width: self.itemSize.width - 100, height: self.itemSize.height - 213)
+        attributtes.size = .init(width: self.itemSize.width, height: self.itemSize.height)
         var transform = CATransform3DIdentity;
         transform.m34 = -1 / 700;
         let radius = attributtes.size.width / 2 / tan(arc / 2.0 / CGFloat(rowCount) )
@@ -40,6 +41,8 @@ open class SHCubleFlowLayout: UICollectionViewLayout {
         transform = CATransform3DRotate(transform, angle, 0, 1, 0)
         print("radius ---\(radius)")
         transform = CATransform3DTranslate(transform, 0, 0, radius)
+        let rate: CGFloat = 0.73
+        transform = CATransform3DScale(transform, 1 * rate , 1 * rate, 1)
         attributtes.transform3D = transform
         
         let ruler = self.collectionView?.bounds.midX ?? 0
