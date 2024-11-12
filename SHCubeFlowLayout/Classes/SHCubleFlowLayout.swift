@@ -38,11 +38,13 @@ open class SHCubleFlowLayout: UICollectionViewLayout {
         let radius = attributtes.size.width / 2 / tan(arc / 2.0 / CGFloat(rowCount) )
         let angle = CGFloat(indexPath.row % 4) * arc / 4 - ((x/containerW) + 1) / CGFloat(rowCount) * arc + 1 / CGFloat(rowCount) * arc
         
+        
         transform = CATransform3DRotate(transform, angle, 0, 1, 0)
         print("radius ---\(radius)")
-        transform = CATransform3DTranslate(transform, 0, 0, radius)
-        let rate: CGFloat = 0.73
-        transform = CATransform3DScale(transform, 1 * rate , 1 * rate, 1)
+        let rate: CGFloat = 0.785
+        transform = CATransform3DTranslate(transform, 0, 0, radius * rate)
+        
+        transform = CATransform3DScale(transform, 1 * rate , 1 * rate,1)
         attributtes.transform3D = transform
         
         let ruler = self.collectionView?.bounds.midX ?? 0
