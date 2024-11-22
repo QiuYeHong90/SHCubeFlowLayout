@@ -27,16 +27,31 @@ open class SHCubleFlowLayout: UICollectionViewFlowLayout {
         return attributtes
     }
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var arr = super.layoutAttributesForElements(in: rect)
-        if let arr = arr,arr.count > 0 {
-            for item in arr {
-                item.configAttributes(collectionView: self.collectionView, itemSize: self.itemSize)
-            }
-            return arr
-        }
+//        var arr = super.layoutAttributesForElements(in: rect)
+//        if let arr = arr,arr.count > 0 {
+//            var newArray: [UICollectionViewLayoutAttributes] = []
+//            for item in arr {
+//                if let attributes = self.layoutAttributesForItem(at: item.indexPath) {
+//                    newArray.append(attributes)
+//                }
+////                item.configAttributes(collectionView: self.collectionView, itemSize: self.itemSize)
+//            }
+//            return newArray
+//        }
         let rowCount = self.collectionView?.numberOfItems(inSection: 0) ?? 0
+        if rowCount <= 0 {
+            return []
+        }
+        let x: CGFloat = CGFloat(collectionView?.contentOffset.x ?? 0)
+        let allW = self.collectionView?.bounds.size.width ?? 1
+        let position = Int((x) / allW)
+        let leftCount = max(position - 2, 0)
+        let rightCount = min(position + 2, max(rowCount - 1, 0))
+        
+        
+        
         var newArray: [UICollectionViewLayoutAttributes] = []
-        for item in 0..<rowCount {
+        for item in leftCount...rightCount {
             let indexPath = IndexPath.init(row: item, section: 0)
             if let attributes = self.layoutAttributesForItem(at: indexPath) {
                 newArray.append(attributes)

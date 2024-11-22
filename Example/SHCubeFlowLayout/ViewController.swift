@@ -10,9 +10,18 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2000
+        return dataCount
     }
-    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        var index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
+        let allCount = self.collectionView(self.collectionView, numberOfItemsInSection: 0)
+        index = min(index, allCount - 1)
+        index = max(index, 0)
+        if index == allCount - 1 {
+            self.dataCount += 20
+            self.collectionView.reloadData()
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemCell
         cell.label.text = "\(indexPath.row)"
@@ -21,7 +30,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
   
     
-    
+    var dataCount: Int = 20
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var flowLayout: SHCubleFlowLayout!
