@@ -89,8 +89,8 @@ extension UICollectionViewLayoutAttributes {
         transform = CATransform3DScale(transform, 1 * rate , 1 * rate,1)
         attributtes.transform3D = transform
         
-        let ruler = collectionView?.bounds.midX ?? 0
-        let position = (x) / self.size.width
+        let ruler = collectionView?.bounds.width ?? 1
+        let position = (x) / ruler
         print("position---\(x)")
         attributtes.zIndex = allCount - abs(indexPath.row - Int(position))
         attributtes.isHidden = (abs(indexPath.row - Int(position)) > 5)
